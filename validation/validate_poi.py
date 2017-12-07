@@ -26,7 +26,13 @@ data = featureFormat(data_dict, features_list)
 labels, features = targetFeatureSplit(data)
 
 
+import numpy
 
 ### it's all yours from here forward!  
+labels       = numpy.reshape( numpy.array(labels), (len(labels), 1))
+features = numpy.reshape( numpy.array(features), (len(features), 1))
 
-
+from sklearn import tree
+clf = tree.DecisionTreeClassifier()
+clf.fit(labels, features)
+print clf.score(labels, features)
